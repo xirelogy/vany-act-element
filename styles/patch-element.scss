@@ -1,0 +1,175 @@
+@use 'sass:map';
+
+@use 'element-plus/theme-chalk/src/mixins/mixins' as *;
+@use 'element-plus/theme-chalk/src/mixins/var' as *;
+@use 'element-plus/theme-chalk/src/common/var' as *;
+
+@use 'element-plus/theme-chalk/src/input' as *;
+
+
+// The default width for a select that is directly under a form-item should be full
+@include b(form-item) {
+  @include e(content) {
+    >.#{$namespace}-select {
+      width: 100%;
+    }
+
+    >.#{$namespace}-date-editor.#{$namespace}-input {
+      width: 100%;
+    }
+  }
+}
+
+
+// Input group support
+@include b(vany-input-group) {
+  @include e(item) {
+    background-color: getCssVar('fill-color', 'light');
+    color: getCssVar('color-info');
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    border: getCssVar('input-border');
+    border-radius: getCssVar('input-border-radius');
+    padding: 0 20px;
+    white-space: nowrap;
+
+    &:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:not(:first-child) {
+      border-left: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    .#{$namespace}-select,
+    .#{$namespace}-button {
+      display: inline-block;
+      margin: 0 -20px;
+    }
+
+    button.#{$namespace}-button,
+    button.#{$namespace}-button:hover,
+    div.#{$namespace}-select .#{$namespace}-input__wrapper,
+    div.#{$namespace}-select:hover .#{$namespace}-input__wrapper {
+      border-color: transparent;
+      background-color: transparent;
+      color: inherit;
+    }
+
+    .#{$namespace}-button,
+    .#{$namespace}-input {
+      font-size: inherit;
+    }
+  }
+
+  @include b(input) {
+    &:not(:last-child) {
+      @include e(wrapper) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+
+    &:not(:first-child) {
+      @include e(wrapper) {
+        margin-left: -1px;
+        border-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+
+  @include b(button) {
+    height: inherit;
+
+    &:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:not(:first-child) {
+      margin-left: -1px;
+      border-left: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  @include b(select) {
+    &:not(:last-child) {
+      @include e(wrapper) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+
+    &:not(:first-child) {
+      @include e(wrapper) {
+        margin-left: -1px;
+        border-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+
+  @include e(child) {
+    &:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      //@include inset-prepend-border(#{getCssVar('input-border-color')});
+    }
+
+    &:not(:first-child) {
+      border-left: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      //@include inset-append-border(#{getCssVar('input-border-color')});
+    }
+  }
+}
+
+
+// Button helper
+.el-button.vany-util-width-full + .el-button.vany-util-width-full {
+  margin-left: initial !important;
+  margin-top: 12px;
+}
+
+
+// Utilities
+.vany-util-width-full {
+  width: 100%;
+}
+
+.vany-util-height-full {
+  height: 100%;
+}
+
+
+// Virtual form support
+.vany-form-virtual {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  > *:not(:first-child) {
+    margin-left: 12px;
+  }
+
+  .el-form-item {
+    margin-right: initial;
+    flex: 1 1 auto;
+  }
+}

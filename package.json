@@ -1,0 +1,52 @@
+{
+  "name": "@xirelogy/vany-act-element",
+  "version": "2.7.1",
+  "description": "ElementUI (ElementPlus) Vany actuator",
+  "keywords": [
+    "vany",
+    "vany actuator",
+    "vue3",
+    "element-plus"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xirelogy/vany-act-element"
+  },  
+  "type": "module",
+  "main": "dist/vany-act-element.umd.cjs",
+  "module": "dist/vany-act-element.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/vany-act-element.umd.cjs",
+      "import": "./dist/vany-act-element.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vue-tsc",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "@xirelogy/vany": "^1.0.0",
+    "@xirelogy/xwts": "^0.1",
+    "vue": "^3.4",
+    "element-plus": "2.7",
+    "@element-plus/icons-vue": "2.3",
+    "@vueuse/core": "^10.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.17.5",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/eslint-config-typescript": "^12.0.0",
+    "sass": "^1.67.0",
+    "typescript": "5.5",
+    "vite": "^4.4.5",
+    "vue-tsc": "^2.0"
+  }
+}

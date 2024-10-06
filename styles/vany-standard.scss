@@ -1,0 +1,70 @@
+:root {
+  --vany-page-margin-x: 8px;
+  --vany-page-margin-y: 8px;
+  --vany-spacing: 8px;
+
+  --vany-color-primary: var(--el-color-primary);
+  --vany-color-success: var(--el-color-success);
+  --vany-color-warning: var(--el-color-warning);
+  --vany-color-danger: var(--el-color-danger);
+  --vany-color-info: var(--el-color-info);
+
+  --vany-color-primary-rgb: var(--el-color-primary-rgb);
+  --vany-color-success-rgb: var(--el-color-success-rgb);
+  --vany-color-warning-rgb: var(--el-color-warning-rgb);
+  --vany-color-danger-rgb: var(--el-color-danger-rgb);
+  --vany-color-info-rgb: var(--el-color-info-rgb);
+
+  --vany-color-text-primary: var(--el-text-color-primary);
+  --vany-color-text-normal: var(--el-text-color-regular);
+
+  --vany-color-contrast: rgb(0, 0, 0);
+  --vany-color-contrast-rgb: 0,0,0;
+}
+
+html.dark {
+  --vany-color-contrast: rgb(255, 255, 255);
+  --vany-color-contrast-rgb: 255,255,255;
+}
+
+.vany-std-fullpage {
+  margin: -8px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.vany-std-body-margin {
+  margin: 8px;
+}
+
+.vany-std-body-padding {
+  padding: 8px;
+}
+
+.vany-std-space-ver {
+  > *:not(:first-child) {
+    margin-top: 8px;
+  }
+}
+
+.vany-std-space-hor {
+  > *:not(:first-child) {
+    margin-left: 8px;
+  }
+}
+
+// To support vany-input-frame's input
+.vany-std-input-frame-input {
+  --el-input-inner-height: calc(var(--el-input-height, 32px) - 2px);
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  color: var(--el-input-text-color,var(--el-text-color-regular));
+  flex-grow: 1;
+  font-size: inherit;
+  height: var(--el-input-inner-height);
+  line-height: var(--el-input-inner-height);
+  outline: none;
+  padding: 0;
+}

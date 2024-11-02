@@ -141,6 +141,13 @@
 }
 
 
+@include b(button) {
+  &.vany-button-square {
+    width: 32px;
+  }
+}
+
+
 // Button helper
 .el-button.vany-util-width-full + .el-button.vany-util-width-full {
   margin-left: initial !important;

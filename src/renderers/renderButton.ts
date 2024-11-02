@@ -60,7 +60,7 @@ const renderButton = (request: VanyRenderRequest) => {
 
   // Expand the button if not inline
   if (!VanyInlineState.isInline()) {
-    attrs.class = (attrs.class ?? []).concat(['vany-util-width-full']);
+    attrs.class = (attrs.class ?? []).concat([' vany-util-width-full ']);
   }
 
   return h(ElButton, attrs, {

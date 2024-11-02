@@ -24,13 +24,12 @@ const renderSelect = (request: VanyRenderRequest) => {
   const specRequest = request as VanySelectRenderRequest;
   const attrs = {
     ...specRequest.attrs,
+    name: specRequest.name !== null ? specRequest.name : undefined,
     placeholder: xw.normalizeString(specRequest.placeholder ?? null),
     disabled: specRequest.disabled,
     _render: specRequest._render,
     _renderManaged: specRequest._renderManaged,
-  } as Record<string, any>;
-
-  if (specRequest.name !== null) attrs.name = specRequest.name;
+  };
 
   return h(ElementSelect, attrs, {
     default: VanyRenderer.acceptSlot(specRequest.slots.default),

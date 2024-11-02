@@ -20,9 +20,8 @@ const renderDialog = (request: VanyRenderRequest) => {
   const specRequest = request as VanyDialogRenderRequest;
   const attrs = {
     ...specRequest.attrs,
-  } as Record<string, any>;
-
-  attrs._render = specRequest._render;
+    _render: specRequest._render,
+  };
 
   const slots = {
     default: VanyRenderer.acceptSlot(specRequest.slots.default),

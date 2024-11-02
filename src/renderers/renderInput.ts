@@ -3,6 +3,10 @@ import {
 } from 'vue';
 
 import {
+  _cast,
+} from '@xirelogy/xwts';
+
+import {
   VanyCommonActuatorHandle,
   VanyInputRenderRequest,
   VanyRenderer,
@@ -24,14 +28,13 @@ const renderInput = (request: VanyRenderRequest) => {
   const specRequest = request as VanyInputRenderRequest;
   const attrs = {
     ...specRequest.attrs,
+    name: specRequest.name !== null ? specRequest.name : undefined,
     disabled: specRequest.disabled,
     _render: specRequest._render,
-  } as Record<string, any>;
+  };
 
-  delete attrs.type;
-
-  if (specRequest.name !== null) attrs.name = specRequest.name;
-  if (specRequest.password) attrs.type = 'password';
+  delete _cast<Record<string, any>>(attrs).type;
+  if (specRequest.password) _cast<Record<string, any>>(attrs).type = 'password';
 
   registerFocusBlurIfTracked(attrs);
 

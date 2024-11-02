@@ -3,6 +3,10 @@ import {
 } from 'vue';
 
 import {
+  _cast,
+} from '@xirelogy/xwts';
+
+import {
   VanyCommonActuatorHandle,
   VanyCheckRenderRequest,
   VanyInlineState,
@@ -23,11 +27,11 @@ const renderCheck = (request: VanyRenderRequest) => {
     ...specRequest.attrs,
     modelValue: specRequest.modelValue,
     disabled: specRequest.disabled,
-  } as Record<string, any>;
+  };
 
   // Expand the check if not inline
   if (!VanyInlineState.isInline()) {
-    attrs.class = (attrs.class ?? []).concat(['vany-util-width-full']);
+    _cast<Record<string, any>>(attrs).class = (_cast<Record<string, any>>(attrs).class ?? []).concat(['vany-util-width-full']);
   }
 
   return h(ElementCheck, attrs, {

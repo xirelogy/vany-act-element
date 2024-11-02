@@ -30,8 +30,8 @@ import 'element-plus/es/components/option/style/css';
 type BroadRenderFunction = () => any;
 
 const props = withDefaults(defineProps<{
-  multiple: boolean, // Include to drop
-  disabled: boolean,
+  multiple?: boolean, // Include to drop
+  disabled?: boolean,
   _render: VanyFormControlRenderService<string|null>|null,
   _renderManaged: VanySelectRenderService|null,
 }>(), {

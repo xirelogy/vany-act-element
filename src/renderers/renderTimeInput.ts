@@ -20,11 +20,10 @@ const renderTimeInput = (request: VanyRenderRequest) => {
   const specRequest = request as VanyTimeInputRenderRequest;
   const attrs = {
     ...specRequest.attrs,
+    name: specRequest.name !== null ? specRequest.name : undefined,
     disabled: specRequest.disabled,
     _render: specRequest._render,
-  } as Record<string, any>;
-
-  if (specRequest.name !== null) attrs.name = specRequest.name;
+  };
 
   return h(ElementTimePicker, attrs, {
     default: VanyRenderer.acceptSlot(specRequest.slots.default),

@@ -18,6 +18,8 @@ import renderDropdownMenu from './renderDropdownMenu';
 import renderForm from './renderForm';
 import renderFormItem from './renderFormItem';
 import renderIcon from './renderIcon';
+import renderImageInput from './renderImageInput';
+import renderImagesInput from './renderImagesInput';
 import renderInput from './renderInput';
 import renderInputFrame from './renderInputFrame';
 import renderInputGroup from './renderInputGroup';
@@ -59,6 +61,8 @@ export default function initRenderers(handle: VanyCommonActuatorHandle): void {
   renderForm(handle);
   renderFormItem(handle);
   renderIcon(handle);
+  renderImageInput(handle);
+  renderImagesInput(handle);
   renderInput(handle);
   renderInputFrame(handle);
   renderInputGroup(handle);

@@ -20,6 +20,7 @@ const renderDropdownMenu = (request: VanyRenderRequest) => {
   const attrs = {
     ...specRequest.attrs,
     trigger: specRequest.trigger,
+    placement: specRequest.placement,
     _render: specRequest._render,
   };
 

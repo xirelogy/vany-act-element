@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   VanyDropdownMenuRenderService,
+  type VanyDropdownMenuPlacementType,
   type VanyDropdownMenuTriggerType,
 } from '@xirelogy/vany';
 
@@ -13,6 +14,7 @@ import 'element-plus/es/components/dropdown/style/css';
 
 const props = withDefaults(defineProps<{
   trigger: VanyDropdownMenuTriggerType,
+  placement: VanyDropdownMenuPlacementType,
   _render?: VanyDropdownMenuRenderService,
 }>(), {
   _render: undefined,
@@ -48,7 +50,7 @@ function onCommand(key: string) {
 </script>
 
 <template>
-  <ElDropdown :trigger="translateTrigger(props.trigger)" @command="onCommand">
+  <ElDropdown :placement="props.placement" :trigger="translateTrigger(props.trigger)" @command="onCommand">
     <slot name="reference"></slot>
     <template #dropdown>
       <ElDropdownMenu>

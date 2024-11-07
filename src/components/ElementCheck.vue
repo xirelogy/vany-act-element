@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import {
   ref,
-  watch,
   withDefaults,
 } from 'vue';
+
+import {
+  VanyFormControlRenderService,
+  type VanyCheckValueType,
+} from '@xirelogy/vany';
 
 import {
   ElCheckbox,
@@ -11,39 +15,53 @@ import {
 import 'element-plus/es/components/checkbox/style/css';
 
 const props = withDefaults(defineProps<{
-  modelValue: boolean|'indeterminate'|null,
   disabled: boolean,
+  _render: VanyFormControlRenderService<VanyCheckValueType|null>|null,
 }>(), {
-  modelValue: null,
   disabled: false,
+  _render: null,
 });
-
-const emits = defineEmits<{
-  'update:modelValue': [value: boolean|'indeterminate'],
-}>();
 
 const inChecked = ref(false);
 const inIndeterminate = ref(false);
 
 
-function onSetValues(modelValue: boolean|'indeterminate'|null): void {
+props._render?.modelValue?.onWatch((modelValue: VanyCheckValueType|null) => {
   if (modelValue === 'indeterminate') {
     inIndeterminate.value = true;
   } else {
     inIndeterminate.value = false;
     inChecked.value = (modelValue === true);
   }
+});
+
+
+/**
+ * Effective value translation
+ * @param v
+ * @returns
+ */
+function getEffectiveValue(v: string|number|boolean): boolean|undefined {
+  if (v === true) {
+    return true;
+  } else if (v === false) {
+    return false;
+  }
+
+  return undefined;
 }
 
-onSetValues(props.modelValue);
-watch(() => props.modelValue, onSetValues);
 
+/**
+ * Handle change
+ * @param v
+ */
 function onChange(v: string|number|boolean) {
-  if (v === true) {
-    emits('update:modelValue', true);
-  } else if (v === false) {
-    emits('update:modelValue', false);
-  }
+  const value = getEffectiveValue(v);
+  if (value === undefined) return;
+
+  props._render?.modelValue?.notifyUpdate(value);
+  props._render?.notifyEvent('change', arguments, v);
 }
 </script>
 

@@ -25,8 +25,8 @@ const renderCheck = (request: VanyRenderRequest) => {
   const specRequest = request as VanyCheckRenderRequest;
   const attrs = {
     ...specRequest.attrs,
-    modelValue: specRequest.modelValue,
     disabled: specRequest.disabled,
+    _render: specRequest._render,
   };
 
   // Expand the check if not inline

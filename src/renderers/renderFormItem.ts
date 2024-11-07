@@ -53,7 +53,7 @@ const renderFormItem = (request: VanyRenderRequest) => {
 
   // Subscribe and handle validation result
   specRequest._render?.onValidated((success: boolean|null, message: string|Error) => {
-    if (refCtrl.value === null) return;
+    if (!refCtrl.value) return;
     if (success === null) {
       refCtrl.value!.clearValidate();
     } else if (!success) {

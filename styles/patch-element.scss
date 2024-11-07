@@ -180,3 +180,13 @@
     flex: 1 1 auto;
   }
 }
+
+
+// Form item in table support
+.el-table__cell {
+  .cell {
+    .el-form-item {
+      margin-bottom: 16px;
+    }
+  }
+}

@@ -7,6 +7,8 @@ import {
   VanyTableColumnRenderRequest,
   VanyRenderRequest,
   VanyVue,
+  VanyNamePrefixState,
+  VanyTableRowKeyState,
   type VanyTableColumnContext,
   type VanySlotFunction,
 } from '@xirelogy/vany';
@@ -36,6 +38,12 @@ const renderTableColumn = (request: VanyRenderRequest) => {
   // Adapt label slot
   children.header = VanyVue.acceptSlotOrTextAsSlot(specRequest.slots.label, specRequest.label);
 
+  // Get name prefix
+  const namePrefix = VanyNamePrefixState.name;
+
+  // Get table row key function
+  const tableRowKeyFunction = VanyTableRowKeyState.fn;
+
   // Process default slot and try to extract the content for label
   if (specRequest.slots.default) {
     children.default = (arg: ElementTableColumnDefaultSlotArg) => {
@@ -45,6 +53,10 @@ const renderTableColumn = (request: VanyRenderRequest) => {
         row: arg.row,
         column: {
           columnKey: specRequest.columnKey,
+        },
+        prefixed: (name: string): string => {
+          const index = tableRowKeyFunction ? tableRowKeyFunction(arg.row) : arg.$index;
+          return `${namePrefix}[${index}].${name}`;
         },
       };
       return specRequest.slots.default!(_outArg);

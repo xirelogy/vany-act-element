@@ -1,6 +1,6 @@
 {
   "name": "@xirelogy/vany-act-element",
-  "version": "2.7.4",
+  "version": "2.7.5",
   "description": "ElementUI (ElementPlus) Vany actuator",
   "keywords": [
     "vany",
@@ -33,7 +33,7 @@
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "@xirelogy/vany": ">=1.0.3",
+    "@xirelogy/vany": ">=1.0.4",
     "@xirelogy/xwts": "^0.1",
     "vue": "^3.4",
     "element-plus": "2.7",

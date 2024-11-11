@@ -28,6 +28,7 @@ import renderMenu from './renderMenu';
 import renderMenuDivider from './renderMenuDivider';
 import renderMenuItem from './renderMenuItem';
 import renderOption from './renderOption';
+import renderPopup from './renderPopup';
 import renderProgress from './renderProgress';
 import renderRadio from './renderRadio';
 import renderRadioGroup from './renderRadioGroup';
@@ -72,6 +73,7 @@ export default function initRenderers(handle: VanyCommonActuatorHandle): void {
   renderMenuDivider(handle);
   renderMenuItem(handle);
   renderOption(handle);
+  renderPopup(handle);
   renderProgress(handle);
   renderRadio(handle);
   renderRadioGroup(handle);

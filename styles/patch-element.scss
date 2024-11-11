@@ -163,6 +163,16 @@
 }
 
 
+// Switch helper
+.el-switch + .el-switch {
+  margin-left: 12px;
+}
+
+.el-switch.vany-util-width-full + .el-switch.vany-util-width-full {
+  margin-left: initial !important;
+}
+
+
 // Utilities
 .vany-util-width-full {
   width: 100%;

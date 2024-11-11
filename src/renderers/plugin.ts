@@ -32,6 +32,7 @@ import renderProgress from './renderProgress';
 import renderRadio from './renderRadio';
 import renderRadioGroup from './renderRadioGroup';
 import renderSelect from './renderSelect';
+import renderSwitch from './renderSwitch';
 import renderTable from './renderTable';
 import renderTableColumn from './renderTableColumn';
 import renderTabPane from './renderTabPane';
@@ -75,6 +76,7 @@ export default function initRenderers(handle: VanyCommonActuatorHandle): void {
   renderRadio(handle);
   renderRadioGroup(handle);
   renderSelect(handle);
+  renderSwitch(handle);
   renderTable(handle);
   renderTableColumn(handle);
   renderTabPane(handle);

@@ -55,6 +55,23 @@ props._render?.modelValue?.onWatch((value: boolean) => {
 watch(() => isVisible.value, (value: boolean) => {
   props._render?.modelValue?.notifyUpdate(value);
 });
+
+// Connect events
+function onShow() {
+  props._render?.notifyEvent('show');
+}
+
+function onShown() {
+  props._render?.notifyEvent('shown');
+}
+
+function onHide() {
+  props._render?.notifyEvent('hide');
+}
+
+function onHidden() {
+  props._render?.notifyEvent('hidden');
+}
 </script>
 
 <template>
@@ -64,6 +81,10 @@ watch(() => isVisible.value, (value: boolean) => {
     :width="props.width"
     :popper-class="props.popupClass"
     v-model:visible="isVisible"
+    @show="onShow"
+    @after-enter="onShown"
+    @hide="onHide"
+    @after-leave="onHidden"
   >
     <template v-if="slots.reference" #reference><slot name="reference"></slot></template>
     <slot></slot>

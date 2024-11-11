@@ -148,6 +148,14 @@
 }
 
 
+// Form item helper
+.vany-std-flex-hor {
+  > .el-form-item + .el-form-item {
+    margin-left: 12px;
+  }
+}
+
+
 // Button helper
 .el-button.vany-util-width-full + .el-button.vany-util-width-full {
   margin-left: initial !important;

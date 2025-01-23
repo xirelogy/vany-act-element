@@ -34,6 +34,7 @@
   },
   "peerDependencies": {
     "@xirelogy/vany": ">=1.0.6",
+    "@xirelogy/vue-minimal": ">=3.5.2",
     "@xirelogy/xwts": "^0.1",
     "vue": "^3.5",
     "element-plus": "2.8",

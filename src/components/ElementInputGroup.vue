@@ -12,11 +12,14 @@ import {
 } from '@xirelogy/xwts';
 
 import {
-  type MinVNode,
   VanyRenderAttributes,
   VanyRenderer,
   VanyVue,
 } from '@xirelogy/vany';
+
+import {
+  type VNode as MinVNode,
+} from '@xirelogy/vue-minimal';
 
 const attrs = new VanyRenderAttributes({
   ...VanyRenderer.acceptAttrs(useAttrs()),

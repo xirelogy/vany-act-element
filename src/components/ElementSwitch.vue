@@ -2,7 +2,6 @@
 import {
   computed,
   ref,
-  useSlots,
   withDefaults,
 } from 'vue';
 
@@ -24,7 +23,12 @@ const props = withDefaults(defineProps<{
   _render: null,
 });
 
-const slots = useSlots();
+const slots = defineSlots<{
+  /**
+   * Default slot
+   */
+  default?: () => any;
+}>();
 
 const inChecked = ref(false);
 

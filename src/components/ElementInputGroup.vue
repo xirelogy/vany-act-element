@@ -3,7 +3,6 @@ import {
   cloneVNode,
   h,
   useAttrs,
-  useSlots,
   type VNode,
 } from 'vue';
 
@@ -25,7 +24,12 @@ const attrs = new VanyRenderAttributes({
   ...VanyRenderer.acceptAttrs(useAttrs()),
 });
 
-const slots = useSlots();
+const slots = defineSlots<{
+  /**
+   * Default slot
+   */
+  default?: () => any;
+}>();
 
 
 /**

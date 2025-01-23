@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {
   ref,
-  useSlots,
 } from 'vue';
 
 import {
@@ -19,7 +18,20 @@ const props = withDefaults(defineProps<{
   _render: null,
 });
 
-const slots = useSlots();
+const slots = defineSlots<{
+  /**
+   * Header slot
+   */
+  header?: () => any;
+  /**
+   * Default slot
+   */
+  default: () => any;
+  /**
+   * Header slot
+   */
+  footer?: () => any;
+}>();
 
 const inValue = ref(false);
 

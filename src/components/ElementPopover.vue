@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {
   ref,
-  useSlots,
   watch,
 } from 'vue';
 
@@ -24,7 +23,16 @@ const props = defineProps<{
   _render: VanyPopupRenderService|null,
 }>();
 
-const slots = useSlots();
+const slots = defineSlots<{
+  /**
+   * Reference slot
+   */
+  reference?: () => any;
+  /**
+   * Default slot
+   */
+  default: () => any;
+}>();
 
 const isVisible = ref(false);
 

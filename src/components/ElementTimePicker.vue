@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   ref,
+  useTemplateRef,
   withDefaults,
 } from 'vue';
 
@@ -24,7 +25,7 @@ const props = withDefaults(defineProps<{
 
 const inValue = ref<VanyStableTimeValue|''>('');
 
-const refInput = ref<InstanceType<typeof ElTimePicker>>();
+const refInput = useTemplateRef('input');
 
 
 props._render?.modelValue?.onWatch((modelValue: VanyStableTimeValue|null) => {
@@ -49,7 +50,7 @@ function onChange(value: VanyStableTimeValue) {
 </script>
 
 <template>
-  <ElTimePicker ref="refInput" v-model="inValue" value-format="hh:mm:ss" :disabled="props.disabled" @blur="onBlur" @change="onChange">
+  <ElTimePicker ref="input" v-model="inValue" value-format="hh:mm:ss" :disabled="props.disabled" @blur="onBlur" @change="onChange">
     <slot></slot>
   </ElTimePicker>
 </template>

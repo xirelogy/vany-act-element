@@ -2,6 +2,7 @@
 import {
   nextTick,
   ref,
+  useTemplateRef,
 } from 'vue';
 
 import {
@@ -20,8 +21,8 @@ import ElementLoading from './ElementLoading.vue';
 
 import { Close as CloseIcon } from '@element-plus/icons-vue';
 
-const refOuter = ref<HTMLDivElement>();
-const refInner = ref<HTMLDivElement>();
+const refOuter = useTemplateRef('outer');
+const refInner = useTemplateRef('inner');
 
 const props = withDefaults(defineProps<{
   listMore?: VanyListMoreFunction|null,
@@ -55,8 +56,8 @@ nextTick(() => {
 </script>
 
 <template>
-  <div ref="refOuter" class="vany-el-list-outer">
-    <div ref="refInner" class="vany-el-list-inner vany-std-flex-ver">
+  <div ref="outer" class="vany-el-list-outer">
+    <div ref="inner" class="vany-el-list-inner vany-std-flex-ver">
       <slot></slot>
       <div v-if="isListMoreRunning">
         <slot name="list-more-loading">

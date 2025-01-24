@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   ref,
+  useTemplateRef,
   withDefaults,
 } from 'vue';
 
@@ -24,7 +25,7 @@ const props = withDefaults(defineProps<{
 
 const inValue = ref<VanyStableDateValue|''>('');
 
-const refInput = ref<InstanceType<typeof ElDatePicker>>();
+const refInput = useTemplateRef('input');
 
 
 props._render?.modelValue?.onWatch((modelValue: VanyStableDateValue|null) => {
@@ -49,7 +50,7 @@ function onChange(value: VanyStableDateValue) {
 </script>
 
 <template>
-  <ElDatePicker ref="refInput" v-model="inValue" value-format="YYYY-MM-DD" :disabled="props.disabled" @blur="onBlur" @change="onChange">
+  <ElDatePicker ref="input" v-model="inValue" value-format="YYYY-MM-DD" :disabled="props.disabled" @blur="onBlur" @change="onChange">
     <slot></slot>
   </ElDatePicker>
 </template>

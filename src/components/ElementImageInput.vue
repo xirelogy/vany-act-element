@@ -2,6 +2,7 @@
 import {
   computed,
   ref,
+  useTemplateRef,
 } from 'vue';
 
 import {
@@ -67,9 +68,9 @@ const displayStyles = computed(() => {
 });
 
 const currentImage = ref<string|null>(null);
-const refPreview = ref<HTMLDivElement>();
-const refCanvas = ref<HTMLCanvasElement>();
-const refUpload = ref<InstanceType<typeof ElUpload>>();
+const refPreview = useTemplateRef('preview');
+const refCanvas = useTemplateRef('canvas');
+const refUpload = useTemplateRef('upload');
 const isError = ref(false);
 const isUploading = ref(false);
 
@@ -135,9 +136,9 @@ props._render?.onValidated((success: boolean|null) => {
 
 <template>
   <div :class="mainClasses" :style="displayStyles">
-    <div v-show="currentImage" ref="refPreview" class="preview-container" tabindex="0">
+    <div v-show="currentImage" ref="preview" class="preview-container" tabindex="0">
       <canvas
-        ref="refCanvas"
+        ref="canvas"
         class="preview-canvas"
         :width="actualDisplayWidth"
         :height="actualDisplayHeight"
@@ -149,7 +150,7 @@ props._render?.onValidated((success: boolean|null) => {
     </div>
     <div v-show="!currentImage" class="upload-container" v-loading="isUploading" :style="displayStyles">
       <ElUpload
-        ref="refUpload"
+        ref="upload"
         class="upload-control"
         :show-file-list="false"
         :multiple="false"

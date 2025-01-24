@@ -3,6 +3,7 @@ import {
   computed,
   nextTick,
   ref,
+  useTemplateRef,
   withDefaults,
 } from 'vue';
 
@@ -49,7 +50,7 @@ const inValue = ref('');
 
 const inOptions = ref<VanyOptionable[]>([]);
 
-const refInput = ref<InstanceType<typeof ElSelect>>();
+const refInput = useTemplateRef('input');
 
 
 /**
@@ -143,7 +144,7 @@ function flattenOptionLabel(value: string|BroadRenderFunction): string {
 </script>
 
 <template>
-  <ElSelect ref="refInput" v-model="inValue" :loading="isLoading" :disabled="props.disabled" @input="onInput" @blur="onBlur" @change="onChange">
+  <ElSelect ref="input" v-model="inValue" :loading="isLoading" :disabled="props.disabled" @input="onInput" @blur="onBlur" @change="onChange">
     <ElOption v-if="isManaged" v-for="inOption in inOptions"
       :key="inOption.value"
       :value="inOption.value"

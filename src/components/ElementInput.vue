@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   ref,
+  useTemplateRef,
   withDefaults,
 } from 'vue';
 
@@ -23,7 +24,7 @@ const props = withDefaults(defineProps<{
 
 const inValue = ref('');
 
-const refInput = ref<InstanceType<typeof ElInput>>();
+const refInput = useTemplateRef('input');
 
 
 props._render?.modelValue?.onWatch((modelValue: string|null) => {
@@ -52,7 +53,7 @@ function onChange() {
 </script>
 
 <template>
-  <ElInput ref="refInput" v-model="inValue" :disabled="props.disabled" @input="onInput" @blur="onBlur" @change="onChange">
+  <ElInput ref="input" v-model="inValue" :disabled="props.disabled" @input="onInput" @blur="onBlur" @change="onChange">
     <slot></slot>
   </ElInput>
 </template>

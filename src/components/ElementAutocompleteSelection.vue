@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {
   computed,
-  ref,
+  useTemplateRef,
 } from 'vue';
 
 import {
@@ -57,7 +57,7 @@ const mainClasses = computed(() => {
 });
 
 // Handle click outside
-const refMain = ref<HTMLElement>();
+const refMain = useTemplateRef('main');
 
 onClickOutside(refMain, () => {
   emits('outside');
@@ -90,7 +90,7 @@ defineExpose({
 </script>
 
 <template>
-  <div ref="refMain" :class="mainClasses">
+  <div ref="main" :class="mainClasses">
     <div v-if="candidates.hasItem.value" :class="[
       nsSelect.be('dropdown', 'wrap'),
       nsScrollbar.e('wrap'),

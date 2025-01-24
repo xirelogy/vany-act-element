@@ -33,7 +33,7 @@
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "@xirelogy/vany": ">=1.0.6",
+    "@xirelogy/vany": ">=1.0.7",
     "@xirelogy/vue-minimal": ">=3.5.2",
     "@xirelogy/xwts": "^0.1",
     "vue": "^3.5",

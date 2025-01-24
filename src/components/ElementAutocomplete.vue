@@ -44,6 +44,8 @@ nextTick(() => {
   window.addEventListener('resize', updateMenuWidth);
 });
 
+
+// Update menu width to match input
 function updateMenuWidth() {
   const el = refReference.value.$el;
   if (!el) return;

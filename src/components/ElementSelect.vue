@@ -71,7 +71,7 @@ function isValueValidLive(value: string): boolean {
 props._render?.modelValue?.onWatch((modelValue: string|null) => {
   inValue.value = modelValue ?? '';
   nextTick(() => {
-    if (!isValueValidLive(inValue.value)) {
+    if (!isValueValidLive(inValue.value) && inValue.value !== '') {
       props._render?.notifyBadModelValue(inValue.value);
     }
   });

@@ -100,7 +100,7 @@ interface ElDrawerHeaderSlotContext {
  * Render the header slot using specific context
  * @param context
  */
- function renderHeaderSlotUsing(context: ElDrawerHeaderSlotContext): VanyRenderFunction {
+function renderHeaderSlotUsing(context: ElDrawerHeaderSlotContext): VanyRenderFunction {
   return () => {
     return h('div', {
       id: context.titleId,

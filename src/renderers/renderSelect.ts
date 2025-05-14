@@ -26,6 +26,7 @@ const renderSelect = (request: VanyRenderRequest) => {
     ...specRequest.attrs,
     name: specRequest.name !== null ? specRequest.name : undefined,
     placeholder: xw.normalizeString(specRequest.placeholder ?? null),
+    clearable: specRequest.clearable,
     disabled: specRequest.disabled,
     _render: specRequest._render,
     _renderManaged: specRequest._renderManaged,

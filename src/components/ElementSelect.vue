@@ -32,6 +32,7 @@ type BroadRenderFunction = () => any;
 
 const props = withDefaults(defineProps<{
   multiple?: boolean, // Include to drop
+  clearable?: boolean,
   disabled?: boolean,
   _render: VanyFormControlRenderService<string|null>|null,
   _renderManaged: VanySelectRenderService|null,
@@ -144,7 +145,7 @@ function flattenOptionLabel(value: string|BroadRenderFunction): string {
 </script>
 
 <template>
-  <ElSelect ref="input" v-model="inValue" :loading="isLoading" :disabled="props.disabled" @input="onInput" @blur="onBlur" @change="onChange">
+  <ElSelect ref="input" v-model="inValue" :loading="isLoading" :clearable="props.clearable" :disabled="props.disabled" @input="onInput" @blur="onBlur" @change="onChange">
     <ElOption v-if="isManaged" v-for="inOption in inOptions"
       :key="inOption.value"
       :value="inOption.value"

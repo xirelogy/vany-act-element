@@ -57,7 +57,7 @@ function onClosed() {
 </script>
 
 <template>
-  <ElDialog v-model="inValue" @open="onOpen" @opened="onOpened" @close="onClose" @closed="onClosed">
+  <ElDialog v-model="inValue" :closeOnClickModal="false" @open="onOpen" @opened="onOpened" @close="onClose" @closed="onClosed">
     <template v-if="slots.header" #header><slot name="header"></slot></template>
     <slot></slot>
     <template v-if="slots.footer" #footer><slot name="footer"></slot></template>

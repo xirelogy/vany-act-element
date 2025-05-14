@@ -173,6 +173,12 @@
 }
 
 
+// Tag helper
+.el-tag + .el-tag {
+  margin-left: 6px;
+}
+
+
 // Utilities
 .vany-util-width-full {
   width: 100%;

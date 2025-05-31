@@ -29,6 +29,13 @@ import 'element-plus/es/components/footer/style/css';
  */
 const renderContainer = (request: VanyRenderRequest) => {
   const specRequest = request as VanyContainerRenderRequest;
+  const attrs = {
+    ...specRequest.attrs,
+  };
+
+  if (specRequest.tight) {
+    attrs.class = (attrs.class ?? []).concat([' vany-tight ']);
+  }
 
   const children = [] as VNode[];
 
@@ -48,7 +55,7 @@ const renderContainer = (request: VanyRenderRequest) => {
     }));
   }
 
-  return h(ElContainer, {}, {
+  return h(ElContainer, attrs, {
     default: () => children,
   });
 };

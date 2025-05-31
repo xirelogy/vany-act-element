@@ -148,6 +148,26 @@
 }
 
 
+// Tight containers
+@include b(container) {
+  &.vany-tight {
+    >.el-header {
+      --el-header-padding: 0 0 20px 0;
+      --el-header-height: auto;
+    }
+
+    >.el-main {
+      --el-main-padding: 0;
+    }
+
+    >.el-footer {
+      --el-footer-padding: 20px 0 0 0;
+      --el-footer-height: auto;
+    }
+  }
+}
+
+
 // Form item helper
 .vany-std-flex-hor {
   > .el-form-item + .el-form-item {

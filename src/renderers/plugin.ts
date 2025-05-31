@@ -9,6 +9,7 @@ import renderBreadcrumbItem from './renderBreadcrumbItem';
 import renderButton from './renderButton';
 import renderCard from './renderCard';
 import renderCheck from './renderCheck';
+import renderClose from './renderClose';
 import renderContainer from './renderContainer';
 import renderDateInput from './renderDateInput';
 import renderDialog from './renderDialog';
@@ -54,6 +55,7 @@ export default function initRenderers(handle: VanyCommonActuatorHandle): void {
   renderButton(handle);
   renderCard(handle);
   renderCheck(handle);
+  renderClose(handle);
   renderContainer(handle);
   renderDateInput(handle);
   renderDialog(handle);

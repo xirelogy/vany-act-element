@@ -47,9 +47,22 @@ nextTick(() => {
 
 // Update menu width to match input
 function updateMenuWidth() {
-  const el = refReference.value.$el;
-  if (!el) return;
-  menuWidth.value = (el as HTMLElement).offsetWidth;
+  // Try to derive using $el convention
+  const $el = refReference.value.$el;
+  if ($el) {
+    const _el = $el as HTMLElement;
+    menuWidth.value = _el.offsetWidth;
+
+    // Observe for changes
+    (new ResizeObserver((entries) => {
+      _used(entries);
+      menuWidth.value = _el.offsetWidth;
+    })).observe(_el);
+
+    return;
+  }
+
+  console.warn('ElementAutocomplete.updateMenuWidth: child element width unsupported');
 }
 
 

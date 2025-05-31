@@ -2,6 +2,7 @@
 import {
   computed,
   ref,
+  useTemplateRef,
 } from 'vue';
 
 import {
@@ -49,10 +50,20 @@ function onFocus() {
 function onBlur() {
   isFocus.value = false;
 }
+
+
+// Support $el
+const refDiv = useTemplateRef('div');
+const $el = computed(() => refDiv.value);
+
+
+defineExpose({
+  $el,
+});
 </script>
 
 <template>
-  <div :class="mainClasses">
+  <div ref="div" :class="mainClasses">
     <div :class="wrapperClasses" tabindex="-1" @focus="onFocus" @blur="onBlur">
       <slot></slot>
     </div>

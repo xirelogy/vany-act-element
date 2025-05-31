@@ -36,6 +36,10 @@ const emits = defineEmits<{
 }>();
 
 const slots = defineSlots<{
+  /**
+   * Item display
+   * @param context
+   */
   default: (context: VanyAutocompleteItemContext) => any,
 }>();
 

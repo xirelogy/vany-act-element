@@ -45,7 +45,11 @@ const slots = defineSlots<{
 
 import useAutocompleteCandidates from '../internals/useAutocompleteCandidates';
 
-const candidates = useAutocompleteCandidates(props.specRequest.filter, props.specRequest.debounceMs);
+const candidates = useAutocompleteCandidates({
+  filter: props.specRequest.filter,
+  debounceMs: props.specRequest.debounceMs,
+  autoSelect: props.specRequest.autoSelect,
+});
 
 // Main DIV classes
 const mainClasses = computed(() => {
@@ -78,6 +82,42 @@ function notifyKeyword(keyword: string) {
 
 
 /**
+ * Notification of keyboard pressed from relevant control
+ * @param ev
+ */
+function notifyControlKeyDown(ev: KeyboardEvent) {
+  const resp = candidates.notifyControlKeyDown(ev);
+  if (resp === false) return;
+
+  switch (resp.typeClass) {
+    case 'selected':
+      // An item is selected as a result
+      props.specRequest.notifySelected(resp.selectedItem, true);
+      emits('selected');
+      break;
+  }
+}
+
+
+/**
+ * Notification of keyboard lifted from relevant control
+ * @param ev
+ */
+function notifyControlKeyUp(ev: KeyboardEvent) {
+  const resp = candidates.notifyControlKeyUp(ev);
+  if (resp === false) return;
+
+  switch (resp.typeClass) {
+    case 'selected':
+      // An item is selected as a result
+      props.specRequest.notifySelected(resp.selectedItem, true);
+      emits('selected');
+      break;
+  }
+}
+
+
+/**
  * Handle selection
  * @param value
  */
@@ -90,6 +130,8 @@ function onSelected(value: any) {
 // Expose functions
 defineExpose({
   notifyKeyword,
+  notifyControlKeyDown,
+  notifyControlKeyUp,
 });
 </script>
 
@@ -100,16 +142,16 @@ defineExpose({
       nsScrollbar.e('wrap'),
       nsScrollbar.em('wrap', 'hidden-default'),
     ]">
-      <li v-for="candidateItem of candidates.items.value"
+      <li v-for="(candidateItem, candidateIndex) of candidates.items.value"
         :class="[
           nsSelect.be('dropdown', 'item'),
           nsSelect.is('selected', candidateItem.isActive),
-          nsSelect.is('hovering', candidateItem.isHovering),
+          nsSelect.is('hovering', candidates.isIndexHovering(candidateIndex)),
         ]"
         role="option"
         :aria-selected="candidateItem.isActive"
-        @mouseenter="() => { candidateItem.isHovering = true; }"
-        @mouseleave="() => { candidateItem.isHovering = false; }"
+        @mouseenter="() => { candidates.notifyMouseHover(candidateIndex, true); }"
+        @mouseleave="() => { candidates.notifyMouseHover(candidateIndex, false); }"
         @click="onSelected(candidateItem.item)"
       >
         <slot

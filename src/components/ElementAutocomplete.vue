@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import {
+  _used,
+} from '@xirelogy/xwts';
+
+import {
   h,
   ref,
-  createTextVNode,
-  cloneVNode,
-  VNode,
   nextTick,
 } from 'vue';
 
 import {
   VanyRenderer,
   VanyAutocompleteRenderRequest,
-  VanyVue,
 } from '@xirelogy/vany';
 
 import {
@@ -23,6 +23,7 @@ import {
   useNamespace,
 } from 'element-plus/es';
 
+import ElementAutocompleteTrigger from './ElementAutocompleteTrigger.vue';
 import ElementAutocompleteSelection from './ElementAutocompleteSelection.vue';
 
 const nsSelect = useNamespace('select');
@@ -74,16 +75,27 @@ props.specRequest.fwdNotifyKeyword.handleUsing((keyword: string) => {
   isVisible.value = true;
 });
 
+props.specRequest.fwdNotifyControlKeyDown.handleUsing((ev: KeyboardEvent) => {
+  refSelections.value?.notifyControlKeyDown(ev);
+});
+
+props.specRequest.fwdNotifyControlKeyUp.handleUsing((ev: KeyboardEvent) => {
+  refSelections.value?.notifyControlKeyUp(ev);
+});
+
+props.specRequest.fwdNotifyControlBlur.handleUsing(() => {
+  // Dismiss any pending selections
+  isVisible.value = false;
+});
+
 
 // Render function
 function render() {
-  const defaultAttrs: Record<string, any> = {
+  const copySlotNode = h(ElementAutocompleteTrigger, {
     ref: refReference,
-  };
-
-  const defaultSlot = VanyRenderer.acceptSlot(props.specRequest.slots.default);
-  const defaultSlotNode = VanyVue.acceptSingleVNode(defaultSlot()) as VNode|null;
-  const copySlotNode = defaultSlotNode ? cloneVNode(defaultSlotNode, defaultAttrs) : createTextVNode('');
+  }, {
+    default: VanyRenderer.acceptSlot(props.specRequest.slots.default),
+  })
 
   return [
     copySlotNode,

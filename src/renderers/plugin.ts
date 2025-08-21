@@ -40,6 +40,7 @@ import renderTableColumn from './renderTableColumn';
 import renderTabPane from './renderTabPane';
 import renderTabs from './renderTabs';
 import renderTag from './renderTag';
+import renderTextAreaInput from './renderTextAreaInput';
 import renderTimeInput from './renderTimeInput';
 
 
@@ -86,5 +87,6 @@ export default function initRenderers(handle: VanyCommonActuatorHandle): void {
   renderTabPane(handle);
   renderTabs(handle);
   renderTag(handle);
+  renderTextAreaInput(handle);
   renderTimeInput(handle);
 }

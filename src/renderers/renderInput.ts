@@ -4,6 +4,7 @@ import {
 
 import {
   _cast,
+  xw,
 } from '@xirelogy/xwts';
 
 import {
@@ -29,6 +30,7 @@ const renderInput = (request: VanyRenderRequest) => {
   const attrs = {
     ...specRequest.attrs,
     name: specRequest.name !== null ? specRequest.name : undefined,
+    placeholder: xw.normalizeString(specRequest.placeholder ?? null),
     disabled: specRequest.disabled,
     _render: specRequest._render,
   };

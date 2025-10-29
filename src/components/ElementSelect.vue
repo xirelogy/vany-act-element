@@ -4,6 +4,7 @@ import {
   nextTick,
   ref,
   useTemplateRef,
+  watch,
   withDefaults,
 } from 'vue';
 
@@ -115,10 +116,18 @@ function isValueValid(value: string): boolean
 
 // Handle managed options
 if (props._renderManaged) {
+  const optionsReadyDeferred = xw.createDeferred<void>();
+
   props._renderManaged.onRefreshOptions(async (source: VanySelectOptionSourceFunction) => {
+    // Reset the deferred for this refresh operation
+    optionsReadyDeferred.reset();
+
     await VanyUi.busyWhile(isLoading, async () => {
       inOptions.value = await xw.asAsyncTarget(source());
     });
+
+    // Wait for the watcher to detect the change and update the DOM
+    await optionsReadyDeferred.wait();
   });
 
   props._renderManaged.onEnsureSelect(() => {
@@ -127,6 +136,14 @@ if (props._renderManaged) {
     if (isValueValid(firstValue)) {
       onChange(firstValue);
     }
+  });
+
+  // Watch for changes to inOptions and notify when ready
+  watch(inOptions, () => {
+    nextTick(() => {
+      // Notify that options are ready after Vue has updated the DOM
+      optionsReadyDeferred.notify();
+    });
   });
 }
 
